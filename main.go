@@ -3,7 +3,6 @@ package main
 import (
 	"encoding/xml"
 	"flag"
-	"html/template"
 	"log"
 	"net/http"
 	"net/http/cgi"
@@ -15,35 +14,6 @@ func checkErr(err error) {
 	if err != nil {
 		panic(err)
 	}
-}
-
-type messageSigns struct {
-	Signs []sign `xml:"messageSign"`
-}
-
-func (ms messageSigns) FindByName(names ...string) []sign {
-	var signs []sign
-	for i := range ms.Signs {
-		mSign := ms.Signs[i]
-		for _, name := range names {
-			if mSign.Name == name {
-				signs = append(signs, mSign)
-			}
-		}
-	}
-
-	return signs
-}
-
-type sign struct {
-	Location  string `xml:"location"`
-	DmsID     string `xml:"dmsid"`
-	Name      string `xml:"name"`
-	Message   string `xml:"message"`
-	Updated   string `xml:"updated"`
-	Beacon    string `xml:"beacon"`
-	Latitude  string `xml:"latitude"`
-	Longitude string `xml:"longitude"`
 }
 
 func main() {
@@ -105,39 +75,4 @@ func setupClient() *http.Client {
 	return &http.Client{
 		Timeout: 3 * time.Second,
 	}
-}
-
-func resultsTemplate() *template.Template {
-	tmplStr := `
-		<!DOCTYPE html>
-		<html>
-			<head>
-				<title>Signs</title>
-			</head>
-			<body>
-				{{range .Signs}}
-					<p>{{.Message}}</p>
-				{{else}}
-					<p>No results!</p>
-				{{end}}
-			</body>
-		</html>
-	`
-	return template.Must(template.New("results").Parse(tmplStr))
-}
-
-func errTemplate() *template.Template {
-	tmplStr := `
-		<!DOCTYPE html>
-		<html>
-			<head>
-				<title>Signs</title>
-			</head>
-			<body>
-				<p>{{.ErrMessage}}</p>
-			</body>
-		</html>
-	`
-
-	return template.Must(template.New("error").Parse(tmplStr))
 }

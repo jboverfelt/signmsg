@@ -48,7 +48,9 @@ func displaySignData(signsLoc string) http.HandlerFunc {
 			return
 		}
 
-		resultsTemplate().Execute(w, struct{ Signs []sign }{signs})
+		dispSigns := toDisplaySigns(signs)
+
+		resultsTemplate().Execute(w, struct{ Signs []displaySign }{dispSigns})
 	}
 }
 

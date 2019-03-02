@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/xml"
+	"strings"
 	"time"
 )
 
@@ -64,4 +65,26 @@ type sign struct {
 	Beacon    bool        `xml:"beacon"`
 	Latitude  string      `xml:"latitude"`
 	Longitude string      `xml:"longitude"`
+}
+
+type displaySign struct {
+	Location     string
+	MessageLines []string
+}
+
+func toDisplaySigns(signs []sign) []displaySign {
+	var displaySigns []displaySign
+	for _, s := range signs {
+		d := displaySign{Location: s.Location}
+
+		noBreaks := strings.Replace(strings.ToUpper(s.Message), "<BR>", "|", -1)
+		noBreaks = strings.Replace(noBreaks, "<BR/>", "|", -1)
+		noBreaks = strings.Replace(noBreaks, "<BR />", "|", -1)
+
+		d.MessageLines = strings.Split(noBreaks, "|")
+
+		displaySigns = append(displaySigns, d)
+	}
+
+	return displaySigns
 }

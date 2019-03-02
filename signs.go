@@ -45,10 +45,11 @@ type messageSigns struct {
 
 func (ms messageSigns) FindByName(names ...string) []sign {
 	var signs []sign
-	for _, mSign := range ms.Signs {
-		for _, name := range names {
+	for _, name := range names {
+		for _, mSign := range ms.Signs {
 			if mSign.Name == name {
 				signs = append(signs, mSign)
+				break
 			}
 		}
 	}

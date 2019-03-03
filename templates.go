@@ -52,10 +52,11 @@ func resultsTemplate() *template.Template {
 							{{range .MessageLines}}
 								<p class="message text">{{.}}</p>
 							{{end}}
+							<p class="time text">Last Updated: {{.Updated}}</p>
 						</div>
 					{{else}}
 						<div class="sign">
-							<p class="time text">No results!</p>
+							<p class="message text">No results!</p>
 						</div>
 					{{end}}
 				</div>

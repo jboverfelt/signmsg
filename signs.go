@@ -71,6 +71,7 @@ type sign struct {
 type displaySign struct {
 	Location     string
 	MessageLines []string
+	Updated      string
 }
 
 func toDisplaySigns(signs []sign) []displaySign {
@@ -83,6 +84,11 @@ func toDisplaySigns(signs []sign) []displaySign {
 		noBreaks = strings.Replace(noBreaks, "<BR />", "|", -1)
 
 		d.MessageLines = strings.Split(noBreaks, "|")
+
+		// we can safely ignore the error here because
+		// we know the implementation can't return one
+		updated, _ := s.Updated.MarshalText()
+		d.Updated = string(updated)
 
 		displaySigns = append(displaySigns, d)
 	}

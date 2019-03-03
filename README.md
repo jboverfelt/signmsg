@@ -1,4 +1,4 @@
-# signmsg
+# signmsg [![Build Status](https://travis-ci.org/jboverfelt/signmsg.svg?branch=master)](https://travis-ci.org/jboverfelt/signmsg)
 
 A CGI program that reaches out to the MD CHART XML API to get the messages on specified road signs
 

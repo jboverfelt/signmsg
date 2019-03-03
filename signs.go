@@ -22,12 +22,7 @@ func (ut *updatedTime) UnmarshalXML(d *xml.Decoder, start xml.StartElement) erro
 		return err
 	}
 
-	loc, err := time.LoadLocation("America/New_York")
-	if err != nil {
-		return err
-	}
-
-	*ut = updatedTime(t.In(loc))
+	*ut = updatedTime(t)
 
 	return nil
 }

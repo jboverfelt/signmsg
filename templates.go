@@ -42,6 +42,10 @@ func resultsTemplate() *template.Template {
 					.sign .location {
 						font-size: 3vh;
 					}
+
+					.sign .time {
+						font-size: 2.5vh;
+					}
 				</style>
 			</head>
 			<body>

@@ -33,8 +33,8 @@ func displaySignData(signsLoc string) http.HandlerFunc {
 		w.Header().Set("Content-Type", "text/html; charset=utf-8")
 		r.ParseForm()
 
-		// Default to the usual two signs
-		names := []string{"8003", "8001"}
+		// Default to the usual signs
+		names := []string{"8003", "8001", "8004"}
 
 		// if we were passed explicit names,
 		// use those instead

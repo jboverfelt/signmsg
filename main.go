@@ -34,7 +34,7 @@ func displaySignData(signsLoc string) http.HandlerFunc {
 		r.ParseForm()
 
 		// Default to the usual signs
-		names := []string{"8003", "8001", "8004"}
+		names := []string{"8003", "8001"}
 
 		// if we were passed explicit names,
 		// use those instead

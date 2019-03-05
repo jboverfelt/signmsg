@@ -78,6 +78,10 @@ func toDisplaySigns(signs []sign) []displaySign {
 		noBreaks = strings.Replace(noBreaks, "<BR/>", "|", -1)
 		noBreaks = strings.Replace(noBreaks, "<BR />", "|", -1)
 
+		noBreaks = strings.Replace(noBreaks, "<P>", "|", -1)
+		noBreaks = strings.Replace(noBreaks, "<P/>", "|", -1)
+		noBreaks = strings.Replace(noBreaks, "<P />", "|", -1)
+
 		d.MessageLines = strings.Split(noBreaks, "|")
 
 		// we can safely ignore the error here because

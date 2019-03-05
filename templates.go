@@ -15,10 +15,10 @@ func resultsTemplate() *template.Template {
 						width: 100%;
 						height: 100vh;
 					}
-		
+
 					.sign {
 						background-color: #201c29;
-						padding: 2em;
+						padding: 1.5em;
 						text-align: center;
 						color: #a1a1af;
 						margin-bottom: 1em;
@@ -28,13 +28,14 @@ func resultsTemplate() *template.Template {
 						align-items: center;
 						justify-content: center;
 						border-radius: 1em;
+						overflow: auto;
 					}
-		
+
 					.sign .text {
-						margin-top: 0.5em;
+						margin-top: 0.25em;
 						margin-bottom: 0.5em;
 					}
-		
+
 					.sign .message {
 						font-size: 4vh;
 					}

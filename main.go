@@ -75,6 +75,6 @@ func getSigns(signsLoc string, names []string) ([]sign, error) {
 
 func setupClient() *http.Client {
 	return &http.Client{
-		Timeout: 7 * time.Second,
+		Timeout: 25 * time.Second,
 	}
 }

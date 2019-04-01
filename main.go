@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/xml"
-	"flag"
 	"log"
 	"net/http"
 	"net/http/cgi"
@@ -17,15 +16,12 @@ func checkErr(err error) {
 }
 
 func main() {
-	signsLoc := flag.String("url", "https://chart.maryland.gov/rss/ProduceRss.aspx?Type=DMSXML", "The url for the Signs XML")
-	certDir := flag.String("certDir", "/usr/pkg/etc/openssl/certs", "The CA cert dir")
+	signsLoc := os.Getenv("SIGNMSG_URL")
+	if signsLoc == "" {
+		signsLoc = "https://chart.maryland.gov/rss/ProduceRss.aspx?Type=DMSXML"
+	}
 
-	flag.Parse()
-
-	err := os.Setenv("SSL_CERT_DIR", *certDir)
-	checkErr(err)
-
-	log.Fatalln(cgi.Serve(displaySignData(*signsLoc)))
+	log.Fatalln(cgi.Serve(displaySignData(signsLoc)))
 }
 
 func displaySignData(signsLoc string) http.HandlerFunc {

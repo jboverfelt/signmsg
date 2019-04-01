@@ -7,7 +7,7 @@ test: build
 	go test -v
 
 deploy:
-	GOOS=netbsd go build -o signmsg.cgi
+	go build -o signmsg.cgi
 	scp signmsg.cgi $(LOC)
 	rm -f signmsg.cgi
 
